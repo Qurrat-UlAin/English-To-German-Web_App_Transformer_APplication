@@ -16,7 +16,9 @@ def get_config():
         "preload": "latest",
         "tokenizer_file": "tokenizer_{0}.json",
         "experiment_name": "runs/tmodel",
-         "dropout": 0.1
+         "dropout": 0.1,
+        "max_input_length": 512,       # ADD THIS
+        "max_output_length": 512 
     }
 
 def get_weights_file_path(config, epoch: str):
