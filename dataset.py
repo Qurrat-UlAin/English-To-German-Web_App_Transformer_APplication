@@ -39,8 +39,13 @@ class BilingualDataset(Dataset):
         dec_num_padding_tokens = self.seq_len - len(dec_input_tokens) - 1
 
         # Make sure the number of padding tokens is not negative. If it is, the sentence is too long
-        if enc_num_padding_tokens < 0 or dec_num_padding_tokens < 0:
-            raise ValueError("Sentence is too long")
+       # Truncate sequences if too long
+        enc_input_tokens = enc_input_tokens[:self.seq_len - 2]  # Reserve space for <s> and </s>
+        dec_input_tokens = dec_input_tokens[:self.seq_len - 1]  # Reserve space for <s>
+
+# Recompute padding after truncation
+        enc_num_padding_tokens = self.seq_len - len(enc_input_tokens) - 2
+        dec_num_padding_tokens = self.seq_len - len(dec_input_tokens) - 1
 
         # Add <s> and </s> token
         encoder_input = torch.cat(
