@@ -6,7 +6,7 @@ def get_config():
         "batch_size": 4,
         "num_epochs": 20,
         "lr": 10**-4,
-        "seq_len": 512,
+        "seq_len": 128,
         "d_model": 512,
         "datasource": 'opus_books',
         "lang_src": "de",
