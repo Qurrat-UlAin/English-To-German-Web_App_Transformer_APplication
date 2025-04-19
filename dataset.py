@@ -33,6 +33,9 @@ class BilingualDataset(Dataset):
     enc_input_tokens = self.tokenizer_src.encode(src_text).ids
     dec_input_tokens = self.tokenizer_tgt.encode(tgt_text).ids
 
+    print(f"Original lengths — enc: {len(enc_input_tokens)}, dec: {len(dec_input_tokens)}")
+
+
     # Truncate BEFORE computing padding
     enc_input_tokens = enc_input_tokens[:self.seq_len - 2]  # <s> and </s>
     dec_input_tokens = dec_input_tokens[:self.seq_len - 1]  # <s> only
